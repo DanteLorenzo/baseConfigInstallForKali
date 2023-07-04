@@ -1,0 +1,6 @@
+[/]
+activate-window-menu=@as []
+close=['<Super>c']
+maximize=@as []
+switch-input-source=['<Alt>Shift_L']
+unmaximize=@as []

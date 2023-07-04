@@ -1,0 +1,8 @@
+[/]
+calculator=['<Shift><Super>equal']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[custom-keybindings/custom0]
+binding='<Alt>space'
+command='gnome-terminal'
+name='Terminal'
