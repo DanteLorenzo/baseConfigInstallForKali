@@ -9,8 +9,8 @@ sudo apt install -y wireguard resolvconf \
 	            bluetooth bluez bluez-tools rfkill blueman \
                     wine chromium golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
-                    cargo
-
+                    cargo simplescreenrecorder python3-pip python3.11-venv \
+		    wine32:i386 gparted airgeddon gobuster yt-dlp
 #Pictures
 mv ./pic/* ~/Pictures/
 
@@ -66,12 +66,12 @@ sudo systemctl enable wg-quick@wg0
 #VSCode
 echo "Install VSCode"
 wget -O ~/Downloads/vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
-sudo apt install -y ~/Downloads/vscode.deb
+sudo dpkg -i ~/Downloads/vscode.deb
 
 #Discord
 echo "Install Discord"
 wget -O ~/Downloads/discord.deb 'https://discord.com/api/download?platform=linux&format=deb'
-sudo apt install -y ~/Downloads/discord.deb 
+sudo dpkg -i ~/Downloads/discord.deb 
 
 #Virtualbox
 echo "Install Virtualbox"
@@ -85,7 +85,7 @@ sudo apt install -y virtualbox virtualbox-ext-pack
 #Steam
 echo "Install Steam"
 wget -O ~/Downloads/steam.deb 'https://cdn.akamai.steamstatic.com/client/installer/steam.deb'
-sudo apt install -y ~/Downloads/steam.deb
+sudo dpkg -i ~/Downloads/steam.deb
 
 #Postman
 wget -O ~/Downloads/postman.tar.gz 'https://dl.pstmn.io/download/latest/linux_64'
@@ -101,6 +101,9 @@ sudo systemctl enable bluetooth.service
 sudo mv ./mac/macspoof@wlan0.service /etc/systemd/system/
 sudo systemctl enable macspoof@wlan0.service
 
+#yt-dlp
+pip install yt-dlp
+
 #Zshrc
 echo 'PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
 echo 'export PATH="${PATH}:${HOME}/.cargo/bin"' >> ~/.zshrc
@@ -109,7 +112,7 @@ source ~/.zshrc
 #Obsidian
 cargo install htmlq
 wget -O ~/Downloads/obsidian.deb $(curl --silent https://obsidian.md/download | htmlq --attribute href a | grep .deb)
-sudo apt install -y ~/Downloads/obsidian.deb
+sudo dpkg -i ~/Downloads/obsidian.deb
 
 #Clear system
 sudo rm -f \
