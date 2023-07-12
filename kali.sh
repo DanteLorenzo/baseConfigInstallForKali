@@ -7,7 +7,7 @@ sudo apt install -y wireguard resolvconf \
 		    hashcat telegram-desktop elinks ansible remmina \
 		    docker.io variety software-properties-common \
 	            bluetooth bluez bluez-tools rfkill blueman \
-                    wine chromium golang gimp macchanger \
+                    wine golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
                     cargo simplescreenrecorder python3-pip python3.11-venv \
 		    wine32:i386 gparted airgeddon gobuster yt-dlp
@@ -115,6 +115,7 @@ wget -O ~/Downloads/obsidian.deb $(curl --silent https://obsidian.md/download | 
 sudo dpkg -i ~/Downloads/obsidian.deb
 
 #Clear system
+echo "Clear System"
 sudo rm -f \
     /etc/apt/sources.list.d/librewolf.sources \
     /etc/apt/keyrings/librewolf.gpg \
@@ -125,7 +126,6 @@ sudo rm -f \
     /etc/apt/trusted.gpg.d/librewolf.gpg \
     /etc/apt/sources.list.d/home:bgstack15:aftermozilla.list \
     /etc/apt/trusted.gpg.d/home_bgstack15_aftermozilla.gpg
-sudo apt remove firefox-esr
 sudo rm -rf ~/Downloads/
 
 echo "Installation complete"
