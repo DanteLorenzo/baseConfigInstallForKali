@@ -1,7 +1,7 @@
-#!/bin/bash
+#! /bin/bash
 
 sudo apt update -y && sudo apt upgrade -y
-#sudo apt install nvidia-driver nvidia-cuda-toolkit
+sudo apt install nvidia-driver nvidia-cuda-toolkit
 sudo apt install -y wireguard resolvconf \
 		    wget gnupg lsb-release apt-transport-https ca-certificates \
 		    hashcat telegram-desktop elinks ansible remmina \
@@ -10,16 +10,13 @@ sudo apt install -y wireguard resolvconf \
                     wine golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
                     cargo simplescreenrecorder python3-pip python3.11-venv \
-		    wine32:i386 gparted airgeddon gobuster yt-dlp
+		    gparted airgeddon gobuster yt-dlp vlc qbittorrent
 #Pictures
 mv ./pic/* ~/Pictures/
 
 #Variety
 rm ~/.config/variety/variety.conf
 mv ./variety/variety.conf ~/.config/variety/
-
-#Pictures
-mv ./pic/* ~/Pictures/
 
 #Keyboard shortcuts
 cat ./keyboard/dump_1 | dconf load /org/gnome/settings-daemon/plugins/media-keys/
@@ -34,7 +31,7 @@ sudo usermod -aG docker $USER
 printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
 sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 #Qemu
 echo "Qemu setup"
@@ -45,6 +42,7 @@ sudo systemctl enable libvirtd.service && sudo systemctl start libvirtd.service
 #Librewolf
 echo "Install Librewolf"
 distro=$(if echo " una vanessa focal jammy bullseye vera uma" | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi)
+wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
 sudo tee /etc/apt/sources.list.d/librewolf.sources << EOF > /dev/null
 Types: deb
 URIs: https://deb.librewolf.net
@@ -94,15 +92,12 @@ mv ./postman/Postman.desktop ~/.local/share/applications/Postman.desktop
 
 #Settings
 sudo dpkg --add-architecture i386
-gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>Shift_L']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>Shift_L']"       
 sudo systemctl enable bluetooth.service 
 
 #Macchanger
 sudo mv ./mac/macspoof@wlan0.service /etc/systemd/system/
 sudo systemctl enable macspoof@wlan0.service
-
-#yt-dlp
-pip install yt-dlp
 
 #Zshrc
 echo 'PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
@@ -116,6 +111,7 @@ sudo dpkg -i ~/Downloads/obsidian.deb
 
 #Clear system
 echo "Clear System"
+sudo apt --fix-broken install
 sudo rm -f \
     /etc/apt/sources.list.d/librewolf.sources \
     /etc/apt/keyrings/librewolf.gpg \
