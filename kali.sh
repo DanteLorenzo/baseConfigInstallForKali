@@ -10,7 +10,8 @@ sudo apt install -y wireguard resolvconf \
                     wine golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
                     cargo simplescreenrecorder python3-pip python3.11-venv \
-		    gparted airgeddon gobuster yt-dlp vlc qbittorrent
+		    gparted airgeddon gobuster yt-dlp vlc qbittorrent \
+		    cal
 #Pictures
 mv ./pic/* ~/Pictures/
 
