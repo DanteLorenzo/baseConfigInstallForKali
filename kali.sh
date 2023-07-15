@@ -26,6 +26,12 @@ cat ./keyboard/dump_3 | dconf load /org/gnome/shell/keybindings/
 cat ./keyboard/dump_4 | dconf load /org/gnome/mutter/keybindings/
 cat ./keyboard/dump_5 | dconf load /org/gnome/mutter/wayland/keybindings/
 
+#GRUB
+sudo mkidr /boot/grub/themes/diana
+sudo cp ./grub/theme.txt /boot/grub/themes/diana/
+sudo cp ./grub/grub /etc/default/grub
+sudo rm -rf /etc/default/grub.d
+
 #Docker
 echo "Setup Docker"
 sudo usermod -aG docker $USER
