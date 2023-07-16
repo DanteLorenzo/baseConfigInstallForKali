@@ -1,7 +1,7 @@
 #! /bin/bash
 
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install nvidia-driver nvidia-cuda-toolkit
+sudo apt install -y nvidia-driver nvidia-cuda-toolkit
 sudo apt install -y wireguard resolvconf \
 		    wget gnupg lsb-release apt-transport-https ca-certificates \
 		    hashcat telegram-desktop elinks ansible remmina \
@@ -9,15 +9,18 @@ sudo apt install -y wireguard resolvconf \
 	            bluetooth bluez bluez-tools rfkill blueman \
                     wine golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
-                    cargo simplescreenrecorder python3-pip python3.11-venv \
+                    simplescreenrecorder python3-pip python3.11-venv \
 		    gparted airgeddon gobuster yt-dlp vlc qbittorrent \
-		    cal
+		    cal 
 #Pictures
 mv ./pic/* ~/Pictures/
 
 #Variety
 rm ~/.config/variety/variety.conf
 mv ./variety/variety.conf ~/.config/variety/
+
+#Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 #Keyboard shortcuts
 cat ./keyboard/dump_1 | dconf load /org/gnome/settings-daemon/plugins/media-keys/
