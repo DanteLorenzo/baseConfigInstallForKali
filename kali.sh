@@ -40,8 +40,7 @@ sudo mkdir /boot/grub/themes/diana
 sudo cp ./grub/theme.txt /boot/grub/themes/diana/
 sudo cp ./grub/grub /etc/default/grub
 sudo rm -rf /etc/default/grub.d
-sudo rm /usr/share/grub/themes/kali/grub-4x3.png
-sudo rm /usr/share/grub/themes/kali/grub-16x9.png
+sudo rm /usr/share/grub/themes/kali/grub-4x3.png /usr/share/grub/themes/kali/grub-16x9.png
 sudo update-grub
 
 #Docker
