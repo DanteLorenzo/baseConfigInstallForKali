@@ -9,10 +9,10 @@ sudo apt install -y wireguard resolvconf \
 		    wget gnupg lsb-release apt-transport-https ca-certificates \
 		    hashcat telegram-desktop elinks ansible remmina \
 		    docker.io software-properties-common \
-	            bluetooth pkg-config libssl-dev ncal\
-                    wine golang gimp macchanger \
+	      bluetooth pkg-config libssl-dev ncal\
+        wine golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
-                    simplescreenrecorder python3-pip python3.11-venv \
+        simplescreenrecorder python3-pip python3.11-venv \
 		    gparted airgeddon gobuster yt-dlp vlc qbittorrent
 
 #Pictures
@@ -107,7 +107,7 @@ sudo dpkg -i ~/Downloads/discord.deb
 echo "End: install Discord"
 
 #Virtualbox
-clear
+#clear
 #echo "Start: install Virtualbox"
 #curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/#oracle_vbox_2016.gpg
 #curl -fsSL https://www.virtualbox.org/download/oracle_vbox.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/oracle_vbox.gpg
@@ -155,6 +155,39 @@ wget -O ~/Downloads/obsidian.deb $(curl --silent https://obsidian.md/download | 
 sudo dpkg -i ~/Downloads/obsidian.deb
 echo "End: install Obsidian"
 
+#Docker
+clear
+echo "Start: install Docker"
+sudo usermod -aG docker $USER
+printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
+sudo apt update -y
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+#sudo chmod 666 /var/run/docker.sock
+sudo systemctl start docker
+newgrp docker
+echo "End: install Docker"
+
+#Hack font
+mkdir ~/.local/share/fonts  
+unzip ./fonts/Hack.zip  -d ~/.local/share/fonts/ 
+fc-cache -fv 
+
+#Terminal profile
+dconf load /org/gnome/terminal/legacy/profiles:/ < ./terminalcfg/gnome-terminal-profiles.dconf
+
+#NVIM
+wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O ~/nvim
+chmod +x ~/nvim
+sudo chown root:root ~/nvim
+sudo mv ~/nvim /usr/bin
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+
+#tmux
+sudo apt install -y tmux
+sudo mkdir ~/.config/tmux
+sudo cp tmux/tmux.conf ~/.config/tmux/
+
 #Clear system
 clear
 echo "Start: clear and fix System"
@@ -172,18 +205,4 @@ sudo rm -f \
 sudo rm -rf ~/Downloads/*
 echo "End: clear and fix System"
 
-#Docker
-clear
-echo "Start: install Docker"
-sudo usermod -aG docker $USER
-printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
-sudo apt update -y
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-#sudo chmod 666 /var/run/docker.sock
-sudo systemctl start docker
-newgrp docker
-echo "End: install Docker"
-
 echo "Installation complete"
-sudo reboot now
