@@ -1,4 +1,14 @@
-[:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+[legacy]
+mnemonics-enabled=false
+new-terminal-mode='window'
+shortcuts-enabled=true
+
+[legacy/keybindings]
+copy='<Primary>c'
+copy-html='<Primary><Shift>c'
+paste='<Primary>v'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 audible-bell=false
 background-transparency-percent=33
 font='Hack Nerd Font 12'
