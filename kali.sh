@@ -13,7 +13,8 @@ sudo apt install -y wireguard resolvconf \
         wine golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
         simplescreenrecorder python3-pip python3.11-venv \
-		    gparted airgeddon gobuster yt-dlp vlc qbittorrent
+		    gparted airgeddon gobuster yt-dlp vlc qbittorrent \
+		    zenmap-kbx wine32:i386
 
 #Pictures
 clear
@@ -148,12 +149,22 @@ sudo systemctl enable macspoof@wlan0.service
 echo "End: setting Macchanger"
 
 #Obsidian
-cler
+clear
 echo "Start: install Obsidian"
 cargo install htmlq
 wget -O ~/Downloads/obsidian.deb $(curl --silent https://obsidian.md/download | htmlq --attribute href a | grep .deb)
 sudo dpkg -i ~/Downloads/obsidian.deb
 echo "End: install Obsidian"
+
+#Thunderbird
+clear
+echo "Start: install Thunderbird"
+wget -O ~/Downloads/thunderbird.tar.bz2 $(curl --silent https://www.thunderbird.net/en-US/ | htmlq --attribute href a | grep -m1 "SSL&os=linux64&lang=en-US")
+tar xjf thunderbird-*.tar.bz2 -C ~/Downloads/
+sudo mv ~/Downloads/thunderbird /opt
+sudo ln -s /opt/thunderbird/thunderbird /usr/bin/thunderbird
+wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/installing-thunderbird-linux/thunderbird.desktop -P ~/.local/share/applications
+echo "End: install Thunder"
 
 #Docker
 clear
