@@ -9,12 +9,12 @@ sudo apt install -y wireguard resolvconf \
 		    wget gnupg lsb-release apt-transport-https ca-certificates \
 		    hashcat telegram-desktop elinks ansible remmina \
 		    docker.io software-properties-common \
-	      bluetooth pkg-config libssl-dev ncal\
-        wine golang gimp macchanger \
+	      	    bluetooth pkg-config libssl-dev ncal\
+        	    wine wine32:i386 golang gimp macchanger \
 		    qemu-utils qemu-kvm virt-manager bridge-utils \
-        simplescreenrecorder python3-pip python3.11-venv \
+        	    simplescreenrecorder python3-pip python3.11-venv \
 		    gparted airgeddon gobuster yt-dlp vlc qbittorrent \
-		    zenmap-kbx wine32:i386
+		    zenmap-kbx sqlitebrowser
 
 #Pictures
 clear
@@ -113,7 +113,7 @@ echo "End: install Discord"
 #curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/#oracle_vbox_2016.gpg
 #curl -fsSL https://www.virtualbox.org/download/oracle_vbox.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/oracle_vbox.gpg
 #echo "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian bullseye contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
-#sudo apt update
+#sudo apt update -y
 #sudo apt install -y dkms
 #sudo apt install -y virtualbox virtualbox-ext-pack
 #echo "End: install Virtualbox"
