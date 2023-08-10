@@ -11,10 +11,10 @@ sudo apt install -y wireguard resolvconf \
 		    docker.io software-properties-common \
 	      	    bluetooth pkg-config libssl-dev ncal\
         	    wine wine32:i386 golang gimp macchanger \
-		    qemu-utils qemu-kvm virt-manager bridge-utils \
+		    qemu-utils qemu-kvm libvirt-daemon-system libvirt-clients virt-manager bridge-utils \
         	    simplescreenrecorder python3-pip python3.11-venv \
 		    gparted airgeddon gobuster yt-dlp vlc qbittorrent \
-		    zenmap-kbx sqlitebrowser
+		    zenmap-kbx sqlitebrowser htop vagrant
 
 #Pictures
 clear
@@ -31,6 +31,18 @@ echo '* * * * * env DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000
 crontab mycron
 rm mycron 
 echo "End: set wallpaper script"
+
+#Asciiquarium
+#wget -O ~/Downloads/Term-anim.tar.gz 'http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.6.tar.gz'
+#tar -zxvf Term-Animation-2.6.tar.gz -C ~/Downloads/
+#perl ~/Downloads/Term-Animation-2.6/Makefile.PL
+#~/Downloads/Term-Animation-2.6/make
+#~/Downloads/Term-Animation-2.6/make test
+#sudo ~/Downloads/Term-Animation-2.6/make install
+#wget -O ~/Downloads/ascii.tar.gz --no-check-certificate 'http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz'
+#tar -zxvf asciiquarium.tar.gz -C ~/Downloads/
+#sudo cp ~/Downloads/ascii/asciiquarium /usr/local/bin/
+#sudo chmod 0755 /usr/local/bin/asciiquarium
 
 #Rust
 clear
@@ -60,7 +72,7 @@ sudo rm /usr/share/grub/themes/kali/grub-4x3.png /usr/share/grub/themes/kali/gru
 sudo update-grub
 echo "End: grub configure"
 
-#Qemu
+#Qemu/KVM
 echo "Start: qemu setup"
 sudo useradd -g $USER libvirt
 sudo useradd -g $USER libvirt-kvm
